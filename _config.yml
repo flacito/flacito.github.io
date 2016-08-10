@@ -1,0 +1,16 @@
+permalink: /:title/
+
+title: Flacito.github.io
+email: btwebb@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  Server programming (Java), Web Site programming (Javascript and Angular), and infrastructure as code (Ruby and Chef),
+  all come together in learning pipelines that start easy and end up taking you to a full stack solution to prepare your
+  for a career like mine.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://flacito.github.io" # the base hostname & protocol for your site
+twitter_username: btwebb
+github_username:  flacito
+
+# Build settings
+markdown: kramdown
+theme: minima
