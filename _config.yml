@@ -1,6 +1,6 @@
 permalink: /:title/
 
-title: Flacito.github.io
+title: flacito.github.io
 email: btwebb@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Server programming (Java), Web Site programming (Javascript and Angular), and infrastructure as code (Ruby and Chef),

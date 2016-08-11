@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Flacito.github.io"
+title:  "Welcome to flacito.github.io"
 date:   2016-08-10 15:29:29 -0400
 categories: jekyll update
 ---
