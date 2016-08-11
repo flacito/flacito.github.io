@@ -37,7 +37,4 @@ and Chef!
 ### Enter Infrastructure Coding
 
 Tools like [Chef](https://chef.io) allow us to solve for this problem of scale.  They were in fact created just for
-this purpose.  Don't worry about going off to [https://learn.chef.io], let's learn with a real example here and
-slowly, deliberately build out the WAR hotel. It'll be rudimentary at first (remember this is designed to do things
-like homeschool my kids), but when we're done, we'll be doing some complex stuff on a single node, which is something
-that could ultimately have you [earning over $100K per year](http://venturebeat.com/2015/03/19/30-tech-skills-that-will-get-you-a-110000-plus-salary/).
+this purpose.  Don't worry about going off to [Chef.io to learn](https://learn.chef.io), let's learn with a real example here and slowly, deliberately build out the WAR hotel. It'll be rudimentary at first (remember this is designed to do things like homeschool my kids), but when we're done, we'll be doing some complex stuff on a single node, which is something that could ultimately have you [earning over $100K per year](http://venturebeat.com/2015/03/19/30-tech-skills-that-will-get-you-a-110000-plus-salary/).
