@@ -2,7 +2,6 @@
 layout: post
 title:  "Welcome to flacito.github.io"
 date:   2016-08-10 15:29:29 -0400
-categories: jekyll update
 ---
 
 I'm a homeschooling father of 5.  While my wife (may God bless her) does all the heavy, day-to-day lifting in
