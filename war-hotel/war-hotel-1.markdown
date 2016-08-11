@@ -16,14 +16,17 @@ tags:
 
 ### Background
 
-What's a WAR Hotel?  Web Applications in Java are delivered via a zip format file with the WAR extension on
-it that stands for Web ARchive.  A WAR Hotel is a machine that is configured to host multiple WARs in potentially
-multiple instances of a Web server on a given port. The WAR contains the HTML and the Java necessary to deliver
-a modern, dynamic Web application or Web service (services typically don't have any pages).
+What's a WAR Hotel?  It's a big server (VM or bare metal) that can host a whole bunch of WARs. If you don't
+know anything about WARs, here's some prerequisite reading:
+
+* [Wikipedia article on WARs](https://en.wikipedia.org/wiki/WAR_(file_format))
+* [An introduction to Apache Tomcat](http://tomcat.apache.org/tomcat-9.0-doc/introduction.html)
+* [Overview of Pivotal tc Server](http://tcserver.docs.pivotal.io/docs-tcserver/topics/intro-getting-started.html)
 
 WARs have been around a long time and were typically hosted on a server administered by someone who configured
-the server directly for the WAR(s) running on the server. That someone also kept the server up and running,
-maintaining intimate knowledge of the server and what was required to host the WAR(s) on the server.
+the server directly for the WAR(s) running on the server. It was easy when it was just one running instance of
+Tomcat on one server. The administrator was easily able to keep the server up and running, maintaining intimate
+knowledge of the server and what was required to host the WAR(s) on the server.
 
 Well, things grew. First it was hosting 10s of WARs on a few servers, then 100s of WARs on scores of servers,
 now the demand is 1000s of WARs.  No way we can keep up with this by hand. Platform as a Service (PaaS) solutions
@@ -32,7 +35,8 @@ in and have yet to really strategically settle as viable alternatives (come on, 
 
 So to handle the scale problem with a transitional architecture until PaaS settles, there's an interesting approach
 we can take.  And why is this approach on this blog? Because it's a great way to learn about infrastructure coding
-and Chef!
+and Chef! Let's build a WAR hotel using Chef and a couple of other tools that don't require big bucks and lots of
+people to maintain.
 
 ### Enter Infrastructure Coding
 
