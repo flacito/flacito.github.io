@@ -12,4 +12,4 @@ tags:
   - web server
 ---
 
-Just started the WAR Hotel learning pipeline. [Let's get going](/war-hotel/).
+Just started the WAR Hotel learning pipeline. [Let's get going](/war-hotel/war-hotel-part1).
