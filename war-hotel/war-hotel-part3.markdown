@@ -52,25 +52,25 @@ end
 
 What is going on here? We are testing to see if the Java software we need on our machine is actually on our machine. We do this in two ways:
 
-1. {% highlight ruby %}its('exit_status') { should eq 0 }{% endhighlight %} tests to see that if the Java command can be run. If our cookbook configures our machine successfully, typing `java -version` should work fine and return 0. If it doesn't return 0, we know we don't have Java installed right.
-2. {% highlight ruby %}its('stderr') { should match /1.8.0_101/ }{% endhighlight %} tests to see that if the right version of Java is installed. The Java command returns it's version if we ask it too and that 'match' word up there just makes sure it's the version we want.
+1. `its('exit_status') { should eq 0 }` tests to see that if the Java command can be run. If our cookbook configures our machine successfully, typing `java -version` should work fine and return 0. If it doesn't return 0, we know we don't have Java installed right.
+2. `its('stderr') { should match /1.8.0_101/ }` tests to see that if the right version of Java is installed. The Java command returns it's version if we ask it too and that 'match' word up there just makes sure it's the version we want.
 
 So you now have a very acceptable test you can run to make sure you are installing Java correctly. We'll run it, but we have a bit more testing to write.
 
 ### Write the Java Repo Test
 
-Remember the experience thing I have going for me? We we learned something along the way of installing packages that reside on repository servers. You can't depend on them. Every server goes down and if you are depending on a repository server, yep, it's going to go down too. If you do allow for this, you won't be able to keep your promises to your customers. You'll try to install the package, the server won't be there, and your code will fail.
+Remember the experience thing I have going for me? We we learned something along the way of installing packages that reside on repository servers. You can't depend on them. Every server goes down and if you are depending on a repository server, yep, it's going to go down too. If you don't allow for this, you won't be able to keep your promises to your customers. You'll try to install the package, the repository server won't be there, and your code will fail.
 
-My friend [Kevin](https://github.com/kmbulebu) came up with a neat idea: use a repository server that you maintain and for all the major groups of things you need to install, set up a repository for that group.  This way you control the server, know when it goes down, and you can fix it.
+My friend [Kevin](https://github.com/kmbulebu) came up with a neat idea: use a repository server that you maintain for all the major groups of things you need to install, set up a repository for that group.  This way you control the server, know when it goes down, and you can fix it.
 
-What this means practically is that we need to set up a yum repository (we're doing this on CentOS) ourselves and configure our machine to pull Java from that yum repository.  Good thing this is a pretty easy thing to test and code.
+What this means practically is that we need to set up a yum repository ourselves (we're doing this on CentOS) and configure our machine to pull Java from that yum repository.  Good thing this is a pretty easy thing to test and code.
 
-Write a test for your Java repo by first creating a file called `test_setup_java_repo.rb` in your default test directory that you created in the previous step. Put these tests in it:
+Write a test for your Java repo by first creating a file called `test_install_java.rb` in your default test directory that you created in the previous step. Put these tests in it:
 
 {% highlight ruby %}
 describe file('/etc/yum.repos.d/java.repo') do
   it { should be_file }
-  its('content') { should match /#{Regexp.escape('https://dl.bintray.com/flacito/rpm')}/ }
+  its('content') { should match /#{Regexp.escape('https://dl.bintray.com/flacito/rpm-java')}/ }
   its('content') { should match /#{Regexp.escape("enabled=0")}/ }
 end
 {% endhighlight %}

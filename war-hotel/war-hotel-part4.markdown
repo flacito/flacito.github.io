@@ -12,11 +12,11 @@ tags:
 
 ## WAR Hotel Part 4 -- Installing Java
 
-### Write the Code to Configure the Java Package Repository
-
 Remember that we're going to control our Java package repo. It's beyond the scope of this lesson, but under the covers Chef is going to use [Yum](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/sec-Configuring_Yum_and_Yum_Repositories.html), which you can read about if you like.
 
 However, we're not going to just install Java from the default package repository that comes with CentOS Linux that is somewhere out on the Internet.  The test cases in Part 3 showed a bit of how we're going to do this.  We need to configure a specific Yum repository where our Java packages reside, doing so by creating a file in /etc/yum.repos.d.  
+
+### Use the Chef yum Cookbook
 
 Here's where the coolness of Chef comes in to play.  We could do this in a raw way and use a Chef [template](https://docs.chef.io/resource_template.html) resource, but the Chef community has written a [yum cookbook](https://supermarket.chef.io/cookbooks/yum) that does this for us and more.  We don't have the write the code! Let's use the community cookbook.
 
@@ -34,11 +34,13 @@ version '0.1.0'
 depends 'yum'
 {% endhighlight %}
 
+### Write the Code to Configure the Java Package Repository
+
 Next it's fairly easy to use this in our recipe.  We'll create a new file in our recipes directory called `install_java.rb` and make it look like the following:
 
 {% highlight ruby %}
 yum_repository 'java' do
-  baseurl 'https://dl.bintray.com/flacito/rpm'
+  baseurl 'https://dl.bintray.com/flacito/rpm-java'
   description 'Java package repository'
   enabled false  # enabled false to avoid picking up in yum upgrades
   gpgcheck false # we're using the free version of Bintray, no GPG check :(
@@ -47,6 +49,8 @@ end
 {% endhighlight %}
 
 What's this doing?  It's going to create the file we need, `/etc/yum.repos.d/java.repo`, and put the things in it that we're testing for like enabled=0 because we said `enabled false` in calling the yum cookbook.
+
+### Write the Code to Install Java
 
 Now we're ready to actually install the package.  Put this after your yum_repository resource in your `install_java.rb` recipe file:
 
